@@ -1,0 +1,23 @@
+VAULT Distributed Object Storage - 10 GB/node
+
+1. Open a terminal in this folder.
+2. Run: npm install
+3. Run: npm start
+4. Open http://localhost:5000
+
+Storage:
+- 6 nodes
+- 10 GB capacity per node
+- 60 GB raw capacity
+- Default 3x replication
+
+Backend fixes:
+- Real file upload and replica placement
+- Least-utilized healthy node selection
+- Persistent metadata in data/nodes/metadata.json
+- Startup reconciliation of actual chunk sizes
+- Real rebalancing between nodes
+- Repair after node failure/corruption
+- Delete frees physical node capacity
+
+If an older data folder is present, the server reconciles node usage from actual .chunk files on startup.

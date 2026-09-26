@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260925-05-46ec85d","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAULT Distributed Storage</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#070b14;--navy:#0a1020;--panel:#0d1627;--panel2:#111f34;--line:#233856;
+      --text:#e9f3ff;--muted:#8da4bf;--blue:#3198ff;--cyan:#0e7f4;--violet:#9b82ff;
+      --green:#42e19a;--amber:#ffc451;--red:#ff607a;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--ink)}
+    body{margin:0;min-width:320px;color:var(--text);font-family:"DM Sans",sans-serif;background:var(--ink)}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+    .app-shell{width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh));background:
+      radial-gradient(circle at 82% -10%,rgba(32,99,177,.25),transparent 30%),
+      radial-gradient(circle at 15% 75%,rgba(94,61,159,.12),transparent 28%),
+      linear-gradient(90deg,rgba(65,120,170,.04) 1px,transparent 1px),
+      linear-gradient(rgba(65,120,170,.035) 1px,transparent 1px),var(--ink);
+      background-size:auto,auto,48px 48px,48px 48px}
+    .sidebar{width:254px;position:fixed;inset:0 auto 0 0;z-index:50;padding:22px 14px;background:rgba(7,12,23,.9);backdrop-filter:blur(22px);border-right:1px solid rgba(74,118,160,.3);display:flex;flex-direction:column;transition:transform .25s ease}
+    .brand-box{display:flex;align-items:center;gap:12px;padding:5px 10px 22px;border-bottom:1px solid rgba(62,96,135,.35)}
+    .brand-orb{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--cyan);background:linear-gradient(145deg,#133357,#0d1729);border:1px solid #32658c;box-shadow:0 0 24px rgba(67,231,244,.18)}
+    .brand{font-family:"Space Mono",monospace;letter-spacing:.18em;font-size:23px;font-weight:700}
+    .nav-caption,.eyebrow{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.13em;color:#7792b2}
+    .nav-caption{padding:20px 12px 7px}
+    .nav-item{width:100%;border:0;background:transparent;color:#91a8c1;display:flex;align-items:center;gap:11px;text-align:left;padding:10px 12px;margin:2px 0;border-radius:8px;font-size:13px;transition:.18s}
+    .nav-item:hover{color:#ddf8ff;background:#102039}
+    .nav-item.active{color:#e7fbff;background:linear-gradient(90deg,rgba(0,172,237,.2),rgba(20,38,64,.42));box-shadow:inset 2px 0 var(--cyan)}
+    .nav-item svg{width:16px;height:16px}
+    .rail-status{margin-top:auto;padding:16px 11px 5px;border-top:1px solid rgba(62,96,135,.35)}
+    .live-dot{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 14px var(--green);display:inline-block}
+    .main-area{margin-left:254px;min-width:0}
+    .topbar{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid rgba(70,108,148,.28);position:sticky;top:0;z-index:30;background:rgba(7,11,21,.78);backdrop-filter:blur(18px)}
+    .route-title{font-size:16px;font-weight:700}.small{font-size:12px;color:var(--muted)}
+    .top-meta{font:10px "Space Mono",monospace;color:#73bed2;letter-spacing:.1em}
+    .content{max-width:1680px;margin:auto;padding:28px 30px 46px}
+    .menu-btn{display:none}
+    .searchbox{display:flex;align-items:center;gap:8px;border:1px solid #284463;background:#0b1525;color:#a8c2d9;border-radius:8px;padding:8px 10px;width:min(285px,31vw)}
+    .searchbox input{border:0;outline:0;background:transparent;color:var(--text);min-width:0;width:100%;font-size:12px}
+    .btn{border:1px solid #2c4a6b;background:#111f34;color:#d7eaff;padding:8px 11px;border-radius:7px;font-weight:600;font-size:12px;transition:.18s}
+    .btn:hover{background:#193353;border-color:#4b83aa}
+    .btn-primary{background:linear-gradient(135deg,#117cd1,#145da3);border-color:#39a8ed;color:white;box-shadow:0 0 18px rgba(49,152,255,.14)}
+    .btn-primary:hover{background:linear-gradient(135deg,#209cf0,#1471c5)}
+    .btn-danger{color:#ffc2cc;border-color:#733646;background:#321523}.btn-danger:hover{background:#4a1b2b}
+    .btn-amber{color:#ffdf9b;border-color:#735720;background:#342a17}.btn-amber:hover{background:#493818}
+    .btn-sm{padding:6px 8px;font-size:11px}
+    .page-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}
+    .page-heading h1{margin:0;font-size:28px;letter-spacing:-.05em}.page-heading p{margin:5px 0 0;color:var(--muted);font-size:13px}
+    .panel{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(16,30,51,.9),rgba(9,17,31,.91));border:1px solid rgba(64,103,10,.47);border-radius:14px;padding:18px;box-shadow:inset 0 1px rgba(174,223,255,.035),0 18px 60px rgba(0,0,0,.16)}
+    .panel:before{content:"";height:1px;position:absolute;top:0;left:24px;right:24px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.28}
+    .section-title{font-size:15px;font-weight:700}.section-sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .badge{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 8px;font:700 10px "Space Mono",monospace;letter-spacing:.04em}
+    .badge i{width:6px;height:6px;border-radius:50%;background:currentColor}
+    .healthy{background:#113629;color:#7cf6ba}.warning{background:#40616;color:#ffda77}.failed{background:#481b28;color:#ffa3b2}.info{background:#102f50;color:#9edcff}.violet{background:#2b2252;color:#cabdff}
+    .metric-inline{display:flex;align-items:baseline;gap:8px}.metric-inline strong{font-size:25px;letter-spacing:-.05em}.metric-inline span{font:10px "Space Mono",monospace;color:#7f9ebc}
+    .dashboard-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(305px,.75fr);gap:16px}
+    .dashboard-lower{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:16px}
+    .mini-readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+    .readout{padding:12px;border:1px solid rgba(60,98,140,.44);border-radius:10px;background:rgba(6,13,25,.42)}
+    .readout strong{display:block;font-size:17px;margin-top:4px}
+    .flow-canvas{min-height:424px;margin-top:16px;border-radius:12px;border:1px solid rgba(0,94,138,.55);overflow:hidden;position:relative;background:
+      radial-gradient(circle at 50% 44%,rgba(39,128,205,.17),transparent 29%),
+      linear-gradient(135deg,rgba(25,79,120,.23),transparent 36%),#081321}
+    .flow-canvas:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(104,177,225,.05) 24px);pointer-events:none}
+    .flow-steps{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr 1fr 1.15fr 1fr;gap:6px;padding:17px 16px 0}
+    .flow-label{text-align:center;font:700 9px "Space Mono",monospace;letter-spacing:.08em;color:#8abedb}
+    .flow-stage{position:absolute;z-index:2;display:grid;place-items:center;text-align:center}
+    .stage-data{left:5%;top:42%;width:86px;height:86px;border-radius:18px;background:linear-gradient(145deg,#1e6cb2,#102a54);border:1px solid #5ab9ec;box-shadow:0 0 28px rgba(49,152,255,.35)}
+    .stage-chunks{left:27%;top:36%;display:grid;grid-template-columns:repeat(2,34px);gap:7px}
+    .chunk{height:34px;border:1px solid #4d99d2;border-radius:6px;background:linear-gradient(145deg,#1a4774,#102440);box-shadow:0 0 15px rgba(67,231,244,.12)}
+    .stage-replicas{left:49%;top:27%;display:grid;grid-template-columns:repeat(3,31px);gap:7px}
+    .replica{height:31px;border-radius:50%;display:grid;place-items:center;border:1px solid #9a82ff;background:#282052;color:#e5ddff;font:700 9px "Space Mono",monospace;box-shadow:0 0 14px rgba(155,130,255,.25)}
+    .storage-cluster{position:absolute;z-index:2;right:7%;top:26%;display:grid;grid-template-columns:repeat(2,56px);gap:18px}
+    .storage-node{height:56px;border-radius:12px;display:grid;place-items:center;border:1px solid #44afdf;background:linear-gradient(145deg,#123859,#0d1d35);box-shadow:8px 8px 0 rgba(2,7,14,.62),0 0 19px rgba(67,231,244,.16);font:700 9px "Space Mono",monospace}
+    .repair-core{position:absolute;z-index:2;right:6%;bottom:11%;width:112px;text-align:center;font:700 9px "Space Mono",monospace;color:#92ffd0}
+    .repair-ring{width:48px;height:48px;border-radius:50%;margin:0 auto 7px;border:2px solid var(--green);box-shadow:0 0 0 7px rgba(66,225,154,.07),0 0 23px rgba(66,225,154,.4);display:grid;place-items:center}
+    .flow-svg{position:absolute;inset:47px 0 0;width:100%;height:calc(100% - 47px);z-index:1}
+    .trace{fill:none;stroke:#2c85c3;stroke-width:1.6;stroke-dasharray:6 7;opacity:.9;animation:dash 3.5s linear infinite}
+    .trace-violet{stroke:#9b82ff}.trace-repair{stroke:#42e19a;stroke-width:2.3}
+    .particle{fill:#6ceefa;filter:drop-shadow(0 0 6px #0e7f4);animation:blink 1.6s infinite alternate}
+    .health-dial{height:224px;display:grid;place-items:center;position:relative;margin-top:4px}
+    .health-dial svg{width:195px;height:195px;transform:rotate(-90deg)}
+    .health-dial circle{fill:none;stroke-width:10}.dial-bg{stroke:#1b314c}.dial-main{stroke:var(--cyan);stroke-linecap:round;stroke-dasharray:426;stroke-dashoffset:29;filter:drop-shadow(0 0 7px #0e7f4)}
+    .dial-red{stroke:var(--red);stroke-width:6;stroke-dasharray:22 390;stroke-dashoffset:-330}
+    .dial-copy{position:absolute;text-align:center}.dial-copy strong{font-size:35px;letter-spacing:-.08em;display:block}.dial-copy span{font:10px "Space Mono",monospace;color:#8fa8c3}
+    .topology-canvas{position:relative;min-height:385px;margin-top:15px;border:1px solid rgba(49,107,157,.45);background:radial-gradient(circle at 50% 50%,rgba(27,100,162,.14),transparent 46%),#081321;border-radius:12px;overflow:hidden}
+    .topology-canvas svg{position:absolute;inset:0;width:100%;height:100%}
+    .topo-line{stroke:#226d9e;stroke-width:1.5;opacity:.66}.topo-line.hot{stroke:#49e5f2;stroke-dasharray:7 10;animation:dash 3.4s linear infinite;filter:drop-shadow(0 0 4px #0e7f4)}
+    .node-card{position:absolute;width:108px;min-height:76px;padding:10px 8px;border-radius:11px;background:linear-gradient(145deg,#132a45,#0d1a2d);border:1px solid #3377a7;color:var(--text);text-align:left;transition:.2s;z-index:3}
+    .node-card:hover,.node-card.selected{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(67,231,244,.12),0 0 24px rgba(67,231,244,.14)}
+    .node-card.failed-node{border-color:var(--red);background:linear-gradient(145deg,#3a1927,#1e1422);opacity:.82}.node-card.partitioned{border-color:var(--amber);background:linear-gradient(145deg,#3b2c14,#201a13)}
+    .node-ring{width:20px;height:20px;border-radius:50%;border:3px solid var(--green);box-shadow:0 0 9px var(--green);float:right}.failed-node .node-ring{border-color:var(--red);box-shadow:0 0 8px var(--red)}.partitioned .node-ring{border-color:var(--amber);box-shadow:0 0 8px var(--amber)}
+    .cap{height:4px;border-radius:4px;background:#203750;overflow:hidden;margin-top:7px}.cap b{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+    .node-detail{display:grid;gap:12px}.detail-line{display:flex;justify-content:space-between;border-bottom:1px solid rgba(50,83,116,.54);padding-bottom:10px;font-size:12px}
+    .event-list{display:grid;gap:12px;margin-top:14px}.event-row{display:grid;grid-template-columns:8px 1fr auto;gap:10px;align-items:start;padding-bottom:11px;border-bottom:1px solid rgba(48,80,112,.4);font-size:12px}.event-row:last-child{border:0}.event-pin{width:7px;height:7px;border-radius:50%;background:var(--cyan);margin-top:5px;box-shadow:0 0 9px var(--cyan)}
+    .iso-wrap{height:188px;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle,rgba(61,173,234,.2),transparent 48%)}
+    .iso-stack{position:relative;width:132px;height:98px;transform:skewY(-10deg) rotate(-2deg)}
+    .iso-layer{position:absolute;left:20px;width:94px;height:34px;border:1px solid #64cef2;background:linear-gradient(130deg,#1b6ea3,#102545);box-shadow:9px 9px 0 rgba(4,11,23,.78),0 0 18px rgba(67,231,244,.2)}
+    .iso-layer:nth-child(1){top:8px}.iso-layer:nth-child(2){top:36px;left:13px;border-color:#8b77e7;background:linear-gradient(130deg,#4b3a91,#171c48)}.iso-layer:nth-child(3){top:64px;left:25px;border-color:#3bd79e;background:linear-gradient(130deg,#167052,#112f37)}
+    .table-wrap{overflow:auto;border:1px solid rgba(49,83,118,.58);border-radius:10px;margin-top:15px}.data-table{border-collapse:collapse;width:100%;min-width:900px;font-size:12px}.data-table th{background:#091423;color:#7e9bb9;text-align:left;padding:10px;font:10px "Space Mono",monospace;letter-spacing:.08em}.data-table td{padding:11px;border-top:1px solid rgba(47,79,110,.48)}.data-table tr:hover td{background:rgba(31,73,110,.18)}
+    .actions{display:flex;gap:6px;flex-wrap:wrap}.mono{font-family:"Space Mono",monospace;font-size:11px}
+    .dropzone{min-height:150px;cursor:pointer;transition:border-color .18s ease,background .18s ease;margin-bottom:16px;border:1px dashed #427da6;border-radius:13px;background:linear-gradient(120deg,rgba(13,48,77,.56),rgba(9,18,33,.7));display:grid;place-items:center;text-align:center;padding:20px}.dropzone.drag{border-color:var(--cyan);background:#0c2a40;box-shadow:0 0 24px rgba(67,231,244,.12)}.dropzone:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.upload-state{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:110px}
+    .map-grid{display:grid;grid-template-columns:.8fr 1.25fr .9fr;gap:14px;min-height:330px;margin-top:16px}.map-lane{position:relative;padding:16px;border:1px solid rgba(48,95,137,.5);border-radius:10px;background:rgba(5,14,26,.48)}.chunk-block{padding:10px;margin:10px 0;border:1px solid #3e8fc2;background:#112c48;border-radius:7px;font:10px "Space Mono",monospace}.replica-route{height:40px;margin:18px 0;border-top:2px dashed #45dff2;position:relative}.replica-route:after{content:"";position:absolute;right:-2px;top:-6px;border-left:9px solid #45dff2;border-top:5px solid transparent;border-bottom:5px solid transparent}.route-dot{position:absolute;width:7px;height:7px;background:#d7ffff;border-radius:50%;top:-5px;left:24%;box-shadow:0 0 10px #0e7f4;animation:moveDot 2.5s linear infinite}.replica-badge{display:inline-block;padding:3px 5px;border:1px solid #765fe1;border-radius:99px;color:#d5cbff;background:#201d47;font:9px "Space Mono",monospace;margin:4px}
+    .checksum-beam{height:120px;margin-top:16px;position:relative;overflow:hidden;border:1px solid #2b5b7f;border-radius:10px;background:linear-gradient(90deg,#0b1b2c,#142a42,#0b1b2c)}.checksum-beam:before{content:"";position:absolute;top:50%;left:-10%;width:55%;height:2px;background:var(--cyan);box-shadow:0 0 15px 3px var(--cyan);animation:beam 2.4s ease-in-out infinite}.checksum-beam.bad:before{background:var(--red);box-shadow:0 0 15px 3px var(--red)}.beam-label{position:absolute;top:16px;left:16px;font:10px "Space Mono",monospace;color:#9dc5df}.beam-result{position:absolute;bottom:14px;right:15px;font:700 13px "Space Mono",monospace;color:#8bf5c2}
+    .repair-pipeline{display:grid;grid-template-columns:repeat(5,minmax(116px,1fr));gap:9px;overflow:auto;margin-top:18px}.repair-step{min-height:125px;padding:13px;border:1px solid #315777;border-radius:10px;background:#0b1829;position:relative;font:700 10px "Space Mono",monospace;color:#b9dbeb}.repair-step:after{content:"→";position:absolute;right:-11px;top:50px;color:var(--cyan);font-size:22px;z-index:2}.repair-step:last-child:after{display:none}.repair-step.done{border-color:#2c916c}.repair-step.active{border-color:var(--cyan);box-shadow:0 0 20px rgba(67,231,244,.18)}.repair-step.bad{border-color:var(--red);color:#ffadb9}
+    .balance-chart{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:18px}.bar-row{display:grid;grid-template-columns:65px 1fr 42px;gap:9px;align-items:center;margin:12px 0;font-size:12px}.integrity-row{margin-top:18px}.integrity-row-head{display:flex;justify-content:space-between;align-items:center;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.04em}.integrity-bar{height:12px;margin-top:8px;border-radius:999px;background:#10243a;border:1px solid rgba(65,151,198,.3);overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.35)}.integrity-bar>b{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--cyan),#42e19a);box-shadow:0 0 10px rgba(66,225,154,.35);transition:width .5s ease}.integrity-detail{margin-top:6px;color:#8fa8c3}.bar{height:9px;border-radius:99px;background:#1c3149;overflow:hidden}.bar b{display:block;height:100%;background:linear-gradient(90deg,#267bd3,#0e7f4);border-radius:inherit}.bar b.red{background:linear-gradient(90deg,#a83850,#ff607a)}
+    .setting-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(52,85,117,.5)}.switch{border:0;width:0px;height:23px;border-radius:99px;padding:3px;background:#37475a}.switch i{display:block;width:17px;height:17px;border-radius:50%;background:#fff;transition:.2s}.switch.on{background:#168b69}.switch.on i{transform:translateX(20px)}
+    .segmented{display:flex;gap:6px;flex-wrap:wrap}.segmented .selected{background:#2d2358;border-color:#927cf4;color:#dfd8ff}
+    .toast{position:fixed;right:22px;bottom:22px;z-index:100;max-width:360px;transform:translateY(110px);opacity:0;transition:.25s;padding:12px 14px;border-radius:10px;border:1px solid #3e7294;background:#102138;box-shadow:0 20px 50px #000a;font-size:13px}.toast.show{transform:none;opacity:1}
+    .modal-layer{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:#020610b8}.modal{max-width:425px;width:100%;padding:21px;border-radius:13px;border:1px solid #3a5e7f;background:#101e32;box-shadow:0 25px 80px #000}.hidden{display:none!important}
+    @keyframes dash{to{stroke-dashoffset:-52}}@keyframes blink{to{opacity:.25}}@keyframes moveDot{to{left:88%}}@keyframes beam{0%,100%{transform:translateX(0);opacity:.35}50%{transform:translateX(120%);opacity:1}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+    @media(max-width:1080px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:none}.main-area{margin-left:0}.menu-btn{display:inline-flex}.dashboard-grid,.dashboard-lower{grid-template-columns:1fr}.content{padding:22px}.topbar{padding:0 22px}.top-search{display:none}}
+    @media(max-width:700px){.content{padding:16px}.topbar{padding:0 16px;height:64px}.system-context{display:none}.page-heading{flex-direction:column}.mini-readouts,.balance-chart,.map-grid{grid-template-columns:1fr}.flow-canvas{min-height:500px}.flow-steps{grid-template-columns:repeat(2,1fr)}.stage-data{left:8%;top:29%}.stage-chunks{left:52%;top:28%}.stage-replicas{left:20%;top:55%}.storage-cluster{right:12%;top:57%;gap:10px}.repair-core{right:36%;bottom:5%}.repair-pipeline{grid-template-columns:repeat(5,145px)}.node-card{transform:scale(.85);transform-origin:top left}}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+ </head>
+ <body data-template-id="__page-root" style="background: rgb(7, 11, 20);">
+  <div class="app-shell">
+   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand-box">
+     <div class="brand-orb">
+      <i data-lucide="database-zap"></i>
+     </div><span data-template-id="vault-wordmark" class="brand canva-text" style="color: rgb(233, 20, 255); font-weight: 700; font-style: normal; font-size: 23px; letter-spacing: 0.18rem;">VAULT</span>
+    </div>
+    <div class="nav-caption">
+     CONTROL PLANE
+    </div>
+    <nav id="navList" aria-label="VAULT sections"></nav>
+    <div class="rail-status">
+     <div class="eyebrow">
+      SYSTEM STATUS
+     </div>
+     <div style="margin-top:8px;font-size:12px;color:#a8f7d0;font-weight:700">
+      <span class="live-dot"></span> CLUSTER OBSERVED
+     </div>
+     <div class="small" style="margin-top:7px">
+      6 nodes · 1,248 objects
+     </div>
+    </div>
+   </aside>
+   <div class="main-area">
+    <header class="topbar">
+     <div style="display:flex;align-items:center;gap:12px"><button class="btn menu-btn" id="menuToggle" aria-label="Toggle navigation"><i data-lucide="menu"></i></button>
+      <div>
+       <div class="route-title" id="routeTitle">
+        Dashboard
+       </div>
+       <div class="top-meta" id="routeSub">
+        DISTRIBUTED CONTROL PLANE
+       </div>
+      </div>
+     </div>
+     <div style="display:flex;align-items:center;gap:10px"><label class="searchbox top-search" aria-label="Global search"><i data-lucide="search" style="width:15px"></i><input id="globalSearch" placeholder="Search objects, nodes..."></label> <button class="btn" id="notificationButton" aria-label="View notifications"><i data-lucide="bell" style="width:15px"></i></button>
+      <div class="system-context" style="border-left:1px solid #29061;padding-left:11px">
+       <div style="font-size:12px;font-weight:700">
+        vault-core
+       </div>
+       <div class="small">
+        demo cluster
+       </div>
+      </div>
+     </div>
+    </header>
+    <main class="content" id="appMain" aria-live="polite"></main>
+   </div>
+   <div class="toast" id="toast" role="status">
+    <span id="toastText"></span>
+   </div>
+   <div class="modal-layer hidden" id="modalLayer" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+     <div style="display:flex;justify-content:space-between;gap:16px">
+      <div>
+       <h2 id="modalTitle" style="margin:0;font-size:18px">Confirm action</h2>
+       <p id="modalText" class="small" style="margin:8px 0 0"></p>
+      </div><button class="btn btn-sm" id="modalClose" aria-label="Close dialog"><i data-lucide="x"></i></button>
+     </div>
+     <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:22px">
+      <button class="btn" id="modalCancel">Cancel</button><button class="btn btn-danger" id="modalConfirm">Confirm</button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+const routes=['Dashboard','Objects','Storage Nodes','Replication','Integrity','Self Repair','Rebalancing','Network','Activity Logs','Settings'];
+const icons={Dashboard:'orbit',Objects:'boxes','Storage Nodes':'server',Replication:'git-branch',Integrity:'shield-check','Self Repair':'wrench',Rebalancing:'scale',Network:'network','Activity Logs':'scroll-text',Settings:'settings'};
+const state={
+ route:'Dashboard',selectedNode:'Node-01',objectFilter:'',logFilter:'All',pendingAction:null,
+ settings:{replication:'3x',chunk:'1 MB',integrity:true,repair:true,rebalancing:true},integrity:{objects:{total:0,healthy:0,percent:100},chunks:{checked:0,healthy:0,percent:100},replicas:{checked:0,healthy:0,percent:100},issues:[]},
+ nodes:[
+  {id:'Node-01',status:'Healthy',cpu:'34%',used:'0.0 GB / 10 GB',pct:0,objects:'1,104 / 84,220',load:'62%',network:'Connected',heartbeat:'2 sec ago',latency:'12 ms',partition:false,role:'primary ingest'},
+  {id:'Node-02',status:'Healthy',cpu:'58%',used:'0.0 GB / 10 GB',pct:0,objects:'1,183 / 101,304',load:'78%',network:'Connected',heartbeat:'1 sec ago',latency:'16 ms',partition:false,role:'replica relay'},
+  {id:'Node-03',status:'Failed',cpu:'—',used:'—',pct:0,objects:'—',load:'—',network:'Offline',heartbeat:'8 min ago',latency:'—',partition:false,role:'repair target'},
+  {id:'Node-04',status:'Healthy',cpu:'29%',used:'0.0 GB / 10 GB',pct:0,objects:'982 / 74,812',load:'46%',network:'Connected',heartbeat:'2 sec ago',latency:'10 ms',partition:false,role:'cold replica'},
+  {id:'Node-05',status:'Healthy',cpu:'47%',used:'0.0 GB / 10 GB',pct:0,objects:'1,208 / 94,128',load:'70%',network:'Connected',heartbeat:'1 sec ago',latency:'14 ms',partition:false,role:'repair source'},
+  {id:'Node-06',status:'Healthy',cpu:'32%',used:'0.0 GB / 10 GB',pct:0,objects:'1,066 / 80,976',load:'53%',network:'Connected',heartbeat:'3 sec ago',latency:'11 ms',partition:false,role:'archive replica'}
+ ],
+ objects:[
+  {name:'research-data.zip',id:'obj_8f92a1',size:'4.8 GB',chunks:'4,800',replication:'3x',checksum:'9f4c...b821',status:'Healthy',created:'2026-09-25 02:20',nodes:['Node-01','Node-04','Node-06']},
+  {name:'genomics-batch-14.parquet',id:'obj_82a1',size:'1.3 GB',chunks:'1,300',replication:'3x',checksum:'c214...e90d',status:'Repairing',created:'2026-09-25 01:42',nodes:['Node-02','Node-05','Node-06']},
+  {name:'model-checkpoint-v7.bin',id:'obj_33dc11',size:'842 MB',chunks:'842',replication:'3x',checksum:'4ad1...9e01',status:'Healthy',created:'2026-09-24 21:14',nodes:['Node-01','Node-02','Node-05']}
+ ],
+ events:[
+  {time:'02:41:08',event:'CORRUPTION DETECTED',object:'obj_82a1',node:'Node-03',severity:'Warning',type:'Integrity'},
+  {time:'02:41:09',event:'REPAIR STARTED',object:'obj_82a1',node:'Node-05',severity:'Info',type:'Repair'},
+  {time:'02:41:11',event:'REPAIR COMPLETE',object:'obj_82a1',node:'Node-03',severity:'Success',type:'Repair'},
+  {time:'02:38:44',event:'REPLICA CONSISTENCY VERIFIED',object:'obj_8f92a1',node:'Node-04',severity:'Success',type:'Replication'},
+  {time:'02:33:21',event:'NETWORK PARTITION HEALED',object:'—',node:'Node-06',severity:'Success',type:'Network'}
+ ]
+};
+const badge=v=>{let c=/Healthy|Success|Connected|MATCH|Complete|Consistent/.test(v)?'healthy':/Failed|Mismatch|Offline/.test(v)?'failed':/Repair|Warning|Partition/.test(v)?'warning':'info';return `<span class="badge ${c}"><i></i>${v}</span>`}
+const addEvent=(event,object='—',node='Cluster',severity='Info',type='Node')=>{state.events.unshift({time:new Date().toLocaleTimeString('en-GB',{hour12:false}),event,object,node,severity,type});state.events=state.events.slice(0,20)}
+const heading=(title,sub,actions='')=>`<div class="page-heading"><div><h1>${title}</h1><p>${sub}</p></div>${actions}</div>`;
+function nav(){navList.innerHTML=routes.map(x=>`<button class="nav-item ${state.route===x?'active':''}" data-route="${x}"><i data-lucide="${icons[x]}"></i>${x}</button>`).join('')}
+function topologySvg(){return `<svg viewBox="0 0 700 385" preserveAspectRatio="none" aria-hidden="true">
+ <line class="topo-line hot" x1="110" y1="94" x2="350" y2="190"/><line class="topo-line" x1="110" y1="94" x2="590" y2="94"/>
+ <line class="topo-line hot" x1="350" y1="190" x2="590" y2="94"/><line class="topo-line" x1="110" y1="284" x2="350" y2="190"/>
+ <line class="topo-line hot" x1="350" y1="190" x2="590" y2="284"/><line class="topo-line" x1="110" y1="284" x2="590" y2="284"/>
+ <circle cx="350" cy="190" r="54" fill="none" stroke="#2982b5" opacity=".25"/><circle cx="350" cy="190" r="77" fill="none" stroke="#0e7f4" opacity=".09"/>
+ </svg>`}
+function nodeMap(compact=false){
+ const pos=[['left:7%;top:10%'],['left:42%;top:8%'],['right:7%;top:10%'],['left:7%;bottom:10%'],['left:42%;bottom:8%'],['right:7%;bottom:10%']];
+ return `<div class="topology-canvas">${topologySvg()}${state.nodes.map((n,i)=>`<button class="node-card ${n.status==='Failed'?'failed-node':''} ${n.partition?'partitioned':''} ${state.selectedNode===n.id?'selected':''}" style="${pos[i]}" data-action="select-node" data-node="${n.id}" aria-label="Select ${n.id}, ${n.status}">
+ <span class="node-ring"></span><strong style="font-size:12px">${n.id}</strong><div class="small" style="margin-top:4px">${n.status==='Failed'?'OFFLINE':n.latency+' · '+n.role}</div><div class="cap"><b style="width:${n.pct}%"></b></div><div class="small" style="margin-top:4px">${n.status==='Failed'?'NO HEARTBEAT':n.pct+'% CAPACITY'}</div></button>`).join('')}</div>`}
+function dashboard(){
+ return heading('Vault Distributed Storage','Fault-tolerant object storage visualized as a live distributed system.')+`
+ <section class="dashboard-grid">
+  <article class="panel">
+   <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><div><div class="section-title">Object lifecycle / live placement fabric</div><div class="section-sub">One object becomes independently recoverable placement units across the cluster.</div></div>${badge('LIVE SIGNAL')}</div>
+   <div class="flow-canvas">
+    <div class="flow-steps">${['DATA','CHUNKS','REPLICAS','STORAGE NODES','SELF-REPAIR'].map(x=>`<div class="flow-label">${x}</div>`).join('')}</div>
+    <svg class="flow-svg" viewBox="0 0 900 350" preserveAspectRatio="none" aria-hidden="true">
+      <path class="trace" d="M105 165 C210 165 215 135 300 135 M105 165 C205 165 220 210 300 210"/>
+      <path class="trace trace-violet" d="M347 135 C00 90 460 90 515 100 M347 135 C00 155 460 155 515 160 M347 210 C00 220 460 220 515 220"/>
+      <path class="trace" d="M555 100 C650 80 685 60 770 70 M555 160 C650 135 685 150 770 145 M555 220 C650 250 680 245 770 245"/>
+      <path class="trace trace-repair" d="M790 205 C850 245 842 292 770 296"/>
+      <circle class="particle" cx="190" cy="165" r="4"/><circle class="particle" cx="453" cy="145" r="4"/><circle class="particle" cx="680" cy="10" r="4"/>
+    </svg>
+    <div class="flow-stage stage-data"><i data-lucide="package-open"></i><span class="mono" style="display:block;margin-top:5px">OBJ_8F92</span></div>
+    <div class="stage-chunks">${[1,2,3,4].map(x=>`<div class="chunk"></div>`).join('')}</div>
+    <div class="stage-replicas">${['A','B','C','D','E','F'].map(x=>`<div class="replica">${x}</div>`).join('')}</div>
+    <div class="storage-cluster">${state.nodes.map(n=>`<div class="storage-node" style="${n.status==='Failed'?'border-color:#ff607a;color:#ffabb8':''}">${n.id.replace('Node-','N')}</div>`).join('')}</div>
+    <div class="repair-core"><div class="repair-ring"><i data-lucide="wrench" style="width:18px"></i></div>VERIFY · COPY · HEAL</div>
+   </div>
+   <div class="mini-readouts"><div class="readout"><div class="eyebrow">OBJECTS</div><strong>1,248</strong><div class="small">+18 today</div></div><div class="readout"><div class="eyebrow">REPLICATION</div><strong>${state.settings.replication}</strong><div class="small">durability policy</div></div><div class="readout"><div class="eyebrow">REPAIR QUEUE</div><strong>07</strong><div class="small">automated recovery</div></div></div>
+  </article>
+  <aside class="panel">
+   <div class="section-title">Cluster health aperture</div><div class="section-sub">One node needs automated attention.</div>
+   <div class="health-dial"><svg viewBox="0 0 160 160"><circle class="dial-bg" cx="80" cy="80" r="68"></circle><circle class="dial-main" cx="80" cy="80" r="68"></circle><circle class="dial-red" cx="80" cy="80" r="68"></circle></svg><div class="dial-copy"><strong>94%</strong><span>FAULT TOLERANT</span></div></div>
+   <div class="node-detail"><div class="detail-line"><span>Metadata quorum</span>${badge('Consistent')}</div><div class="detail-line"><span>SHA-256 coverage</span><b>99.99%</b></div><div class="detail-line"><span>Healthy nodes</span><b>5 / 6</b></div><div class="detail-line"><span>Median latency</span><b>12 ms</b></div></div>
+   <button class="btn btn-primary" data-route="Network" style="width:100%;margin-top:16px">Inspect cluster topology</button>
+  </aside>
+ </section>
+ <section class="dashboard-lower">
+  <article class="panel"><div class="section-title">Six-node storage constellation</div><div class="section-sub">Capacity arcs, active traffic paths, and replica-aware node roles.</div>${nodeMap()}</article>
+  <article class="panel"><div class="section-title">Operational trace</div><div class="section-sub">Recent autonomous storage events</div><div class="event-list">${state.events.slice(0,5).map(e=>`<div class="event-row"><span class="event-pin" style="background:${e.severity==='Warning'?'var(--amber)':e.severity==='Success'?'var(--green)':'var(--cyan)'}"></span><div><b>${e.event}</b><div class="small" style="margin-top:3px">${e.object} · ${e.node}</div></div><span class="mono" style="color:#87a8c4">${e.time}</span></div>`).join('')}</div></article>
+ </section>`}
+function objectsView(){
+ const list=state.objects.filter(o=>(o.name+o.id).toLowerCase().includes(state.objectFilter.toLowerCase()));
+ return heading('Objects','Chunked object inventory with replica-aware integrity and retrieval controls.',`<label class="searchbox"><i data-lucide="search" style="width:15px"></i><input id="objectSearch" value="${state.objectFilter}" placeholder="Search object or ID"></label>`)+`
+ <section class="dropzone" id="dropZone" tabindex="0" role="button" aria-label="Upload object">
+  <div>
+    <i data-lucide="upload-cloud" style="color:var(--cyan);width:34px;height:34px"></i>
+    <div style="font-weight:700;margin-top:8px">Inject object into distributed storage</div>
+    <div class="small" style="margin-top:5px">Chunk size ${state.settings.chunk} · replication ${state.settings.replication}</div>
+    <label class="btn btn-primary" for="filePicker" style="display:inline-flex;margin-top:13px;cursor:pointer">Upload Object</label>
+    <input type="file" id="filePicker" accept="*/*" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0" aria-label="Choose file to upload">
+    <div class="small" style="margin-top:9px">or drag & drop any file here</div>
+  </div>
+</section>
+ <article class="panel"><div class="section-title">Stored object registry</div><div class="table-wrap"><table class="data-table"><thead><tr><th>OBJECT</th><th>ID</th><th>SIZE / CHUNKS</th><th>REPLICATION</th><th>CHECKSUM</th><th>STATE</th><th>REPLICA DESTINATIONS</th><th>ACTIONS</th></tr></thead><tbody>${list.map(o=>`<tr><td><b>${o.name}</b><div class="small">${o.created}</div></td><td class="mono">${o.id}</td><td>${o.size}<div class="small">${o.chunks} chunks</div></td><td>${o.replication}</td><td class="mono">${o.checksum}</td><td>${badge(o.status)}</td><td>${o.nodes.map(n=>`<span class="replica-badge">${n}</span>`).join('')}</td><td><div class="actions"><button class="btn btn-sm" data-action="download" data-object="${o.id}">Download Object</button><button class="btn btn-sm" data-action="metadata" data-object="${o.id}">View Metadata</button><button class="btn btn-sm" data-action="verify-object" data-object="${o.id}">Verify Integrity</button><button class="btn btn-sm btn-amber" data-action="repair-object" data-object="${o.id}">Repair Object</button><button class="btn btn-sm btn-danger" data-action="delete-object" data-object="${o.id}">Delete</button></div></td></tr>`).join('')}</tbody></table></div></article>`}
+function detailView(){return heading('Object Metadata','Distributed chunk placement, consistency, and replica retrieval paths.',`<button class="btn" data-route="Objects">← Back to Objects</button>`)+`
+ <section class="dashboard-grid"><article class="panel"><div style="display:flex;justify-content:space-between"><div><div class="section-title">research-data.zip</div><div class="small mono" style="margin-top:4px">obj_8f92a1 · SHA-256 9f4c...b821</div></div>${badge('Healthy')}</div>
+ <div class="map-grid"><div class="map-lane"><div class="eyebrow">CHUNKS</div>${['0001','0002','0003','0004','0005'].map(x=>`<div class="chunk-block">CHUNK ${x}<div style="color:#75ccea;margin-top:3px">1 MB · VERIFIED</div></div>`).join('')}</div><div class="map-lane"><div class="eyebrow">REPLICA PATHS</div>${[1,2,3,4,5].map((x,i)=>`<div class="replica-route"><span class="route-dot" style="animation-delay:${i*.24}s"></span><span class="replica-badge">R${i%3+1}</span></div>`).join('')}</div><div class="map-lane"><div class="eyebrow">STORAGE NODES</div>${['Node-01','Node-04','Node-06'].map(x=>`<div class="chunk-block" style="border-color:#775fdd;background:#191b3d">${x}<div style="color:#c5bbff;margin-top:3px">REPLICA AVAILABLE</div></div>`).join('')}</div></div></article>
+ <aside class="panel"><div class="section-title">Storage distribution</div><div class="iso-wrap"><div class="iso-stack"><div class="iso-layer"></div><div class="iso-layer"></div><div class="iso-layer"></div></div></div><div class="node-detail"><div class="detail-line"><span>Object size</span><b>4.8 GB</b></div><div class="detail-line"><span>Chunk count</span><b>4,800</b></div><div class="detail-line"><span>Expected replicas</span><b>3 / 3</b></div><div class="detail-line"><span>Retrieval state</span>${badge('Consistent')}</div></div></aside></section>
+ <article class="panel" style="margin-top:16px"><div class="section-title">Chunk distribution sample</div><div class="table-wrap"><table class="data-table"><thead><tr><th>CHUNK</th><th>CHECKSUM</th><th>REPLICA 1</th><th>REPLICA 2</th><th>REPLICA 3</th><th>STATUS</th></tr></thead><tbody>${['0001','0002','0003','0004','0005'].map((c,i)=>`<tr><td class="mono">Chunk ${c}</td><td class="mono">${['a82f...91','91ac...72','d14e...b0','71fd...9c','3d2a...ee'][i]}</td><td>Node-01</td><td>Node-04</td><td>Node-06</td><td>${badge('Healthy')}</td></tr>`).join('')}</tbody></table></div></article>`}
+function nodesView(){return heading('Storage Nodes','Monitor capacity, replication workload, connectivity, and node-level simulations.')+`<section class="dashboard-grid"><article class="panel"><div class="section-title">Independent storage-node map</div><div class="section-sub">Select a node to focus its role in replication and repair.</div>${nodeMap()}</article><aside class="panel">${selectedNodePanel()}</aside></section><article class="panel" style="margin-top:16px"><div class="section-title">Node telemetry</div><div class="table-wrap"><table class="data-table"><thead><tr><th>NODE</th><th>STATUS</th><th>CPU</th><th>STORAGE USED</th><th>OBJECTS / CHUNKS</th><th>REPL. LOAD</th><th>NETWORK</th><th>ACTIONS</th></tr></thead><tbody>${state.nodes.map(n=>`<tr><td><b>${n.id}</b><div class="small">${n.role}</div></td><td>${badge(n.partition?'Partitioned':n.status)}</td><td>${n.cpu}</td><td>${n.used}</td><td class="mono">${n.objects}</td><td>${n.load}</td><td>${badge(n.network)}</td><td><div class="actions"><button class="btn btn-sm" data-action="node-details" data-node="${n.id}">View Details</button>${n.status==='Failed'?`<button class="btn btn-sm btn-primary" data-action="recover" data-node="${n.id}">Recover Node</button>`:`<button class="btn btn-sm btn-danger" data-action="fail" data-node="${n.id}">Fail Node</button>`}${n.partition?`<button class="btn btn-sm btn-primary" data-action="heal" data-node="${n.id}">Heal Partition</button>`:`<button class="btn btn-sm btn-amber" data-action="partition" data-node="${n.id}">Partition Node</button>`}</div></td></tr>`).join('')}</tbody></table></div></article>`}
+function selectedNodePanel(){const n=state.nodes.find(x=>x.id===state.selectedNode);return `<div class="eyebrow">SELECTED NODE</div><div style="font-size:29px;font-weight:700;margin-top:5px">${n.id}</div><div style="margin-top:8px">${badge(n.partition?'Partitioned':n.status)}</div><div class="iso-wrap" style="height:150px"><div class="iso-stack" style="transform:scale(.75) skewY(-10deg)"><div class="iso-layer"></div><div class="iso-layer"></div><div class="iso-layer"></div></div></div><div class="node-detail"><div class="detail-line"><span>Role</span><b>${n.role}</b></div><div class="detail-line"><span>Latency</span><b>${n.latency}</b></div><div class="detail-line"><span>Capacity</span><b>${n.pct}%</b></div><div class="detail-line"><span>Last heartbeat</span><b>${n.heartbeat}</b></div></div><div class="actions" style="margin-top:16px">${n.status==='Failed'?`<button class="btn btn-primary" data-action="recover" data-node="${n.id}">Recover Node</button>`:`<button class="btn btn-danger" data-action="fail" data-node="${n.id}">Fail Node</button>`}${n.partition?`<button class="btn btn-primary" data-action="heal" data-node="${n.id}">Heal Partition</button>`:`<button class="btn btn-amber" data-action="partition" data-node="${n.id}">Partition Node</button>`}</div>`}
+function replicationView(){return heading('Replication','Replica branch visualizations reveal how durability is maintained.',`<button class="btn btn-primary" data-action="reconcile">Reconcile Queue</button>`)+`<section class="dashboard-grid"><article class="panel"><div class="section-title">Replica placement graph</div><div class="section-sub">Target factor ${state.settings.replication}; paths are split across independent domains.</div><div class="flow-canvas" style="min-height:330px"><svg class="flow-svg" viewBox="0 0 900 280" preserveAspectRatio="none"><path class="trace" d="M120 140 C330 140 335 60 550 60 M120 140 C330 140 335 140 550 140 M120 140 C330 140 335 220 550 220"/><path class="trace trace-violet" d="M550 60 L750 60 M550 140 L750 140 M550 220 L750 220"/></svg><div class="stage-data" style="top:38%">OBJECT<br><span class="mono">OBJ_8F92</span></div><div class="stage-chunks" style="left:38%;top:37%">${[1,2,3,4].map(x=>`<div class="chunk"></div>`).join('')}</div><div class="storage-cluster" style="right:9%;top:19%;grid-template-columns:1fr;gap:22px"><div class="storage-node">Node-01 · R1</div><div class="storage-node">Node-04 · R2</div><div class="storage-node">Node-06 · R3</div></div></div></article><aside class="panel"><div class="section-title">Replication telemetry</div><div class="mini-readouts" style="grid-template-columns:1fr"><div class="readout"><div class="eyebrow">HEALTHY REPLICAS</div><strong>3 / 3</strong></div><div class="readout"><div class="eyebrow">UNDER-REPLICATED</div><strong style="color:#ffcf70">02</strong></div><div class="readout"><div class="eyebrow">QUEUE DEPTH</div><strong>04</strong></div></div></aside></section>`}
+function repairView(){const fail=state.nodes.find(n=>n.status==='Failed')||state.nodes[2];return heading('Self-Healing','Checksum-driven recovery restores an independent replica without operator intervention.',`<div class="actions"><button class="btn btn-primary" data-action="repair-object" data-object="obj_82a1">Repair Object</button><button class="btn btn-amber" data-action="pause-repair">Pause Self-Repair</button></div>`)+`<section class="dashboard-grid"><article class="panel"><div class="section-title">Failure → verification → recovery scenario</div><div class="section-sub">Corrupted replica on ${fail.id}; healthy source is Node-05.</div><div class="repair-pipeline"><div class="repair-step bad">CORRUPTED REPLICA<div class="small" style="margin-top:13px;color:#ff9cab">${fail.id}<br>CHECKSUM MISMATCH</div></div><div class="repair-step done">VERIFY CHECKSUM<div class="small" style="margin-top:13px">EXPECTED HASH LOCKED</div></div><div class="repair-step done">FIND HEALTHY REPLICA<div class="small" style="margin-top:13px">SOURCE: NODE-05</div></div><div class="repair-step active">COPY CHUNK<div class="small" style="margin-top:13px">FLOWING 1 MB BLOCK</div></div><div class="repair-step done">VERIFY<div class="small" style="margin-top:13px">DESTINATION RECOVERS</div></div></div><div class="checksum-beam bad"><div class="beam-label">CORRUPTED REPLICA / b72e14... / ${fail.id}</div><div class="beam-result" style="color:#ff9eae">MISMATCH DETECTED</div></div></article><aside class="panel"><div class="section-title">Repair state</div><div class="health-dial" style="height:190px"><svg viewBox="0 0 160 160"><circle class="dial-bg" cx="80" cy="80" r="68"></circle><circle class="dial-main" cx="80" cy="80" r="68" style="stroke-dashoffset:102"></circle></svg><div class="dial-copy"><strong>76%</strong><span>COPY TRACE</span></div></div><div class="node-detail"><div class="detail-line"><span>Objects checked</span><b>1,248</b></div><div class="detail-line"><span>Missing replicas</span><b>7</b></div><div class="detail-line"><span>Avg repair time</span><b>1.8 sec</b></div><div class="detail-line"><span>Self-repair</span>${badge('Active')}</div></div></aside></section>`}
+function integrityView(){
+ const d=state.integrity||{objects:{total:0,healthy:0,percent:100},chunks:{checked:0,healthy:0,percent:100},replicas:{checked:0,healthy:0,percent:100},issues:[]};
+ const pct=v=>Math.max(0,Math.min(100,Number(v)||0));
+ const bar=(label,value,detail)=>`<div class="integrity-row"><div class="integrity-row-head"><span>${label}</span><b>${pct(value).toFixed(2)}%</b></div><div class="integrity-bar"><b style="width:${pct(value)}%"></b></div><div class="small integrity-detail">${detail}</div></div>`;
+ const issues=d.issues||[];
+ const issueRows=issues.slice(0,8).map(i=>`<div class="checksum-beam bad"><div class="beam-label">${escapeHtml(i.objectId)} · CHUNK ${String(i.index).padStart(4,'0')} · ${escapeHtml(i.nodeId||'unknown')}</div><div class="beam-result" style="color:#ffa0af">MISMATCH / ${escapeHtml(i.error||'REPAIR QUEUED')}</div></div>`).join('');
+ return heading('Integrity','SHA-256 verification reflects the live state of every object, chunk, and replica.',`<button class="btn btn-primary" id="verifyAll">Verify All</button>`)
+ +`<section class="dashboard-grid">
+ <article class="panel"><div class="section-title">Live integrity coverage</div><div class="section-sub">Bars are calculated from the Vault backend; they are not demo values.</div>
+ ${bar('OBJECT INTEGRITY',d.objects.percent,`${d.objects.healthy} of ${d.objects.total} objects healthy`)}
+ ${bar('CHUNK INTEGRITY',d.chunks.percent,`${d.chunks.healthy} of ${d.chunks.checked} chunks verified`)}
+ ${bar('REPLICA INTEGRITY',d.replicas.percent,`${d.replicas.healthy} of ${d.replicas.checked} replicas healthy`)}
+ </article>
+ <aside class="panel"><div class="section-title">Verification scope</div><div class="mini-readouts" style="grid-template-columns:1fr">
+ <div class="readout"><div class="eyebrow">OBJECTS VERIFIED</div><strong>${d.objects.total}</strong></div>
+ <div class="readout"><div class="eyebrow">CHUNKS VERIFIED</div><strong>${d.chunks.checked}</strong></div>
+ <div class="readout"><div class="eyebrow">UNHEALTHY REPLICAS</div><strong style="color:${d.replicas.unhealthy?'#ff9aaa':'var(--green)'}">${d.replicas.unhealthy}</strong></div>
+ </div></aside>
+ </section>
+ <section class="panel" style="margin-top:16px"><div class="section-title">Integrity exceptions</div><div class="section-sub">${issues.length?`${issues.length} issue(s) detected in the latest verification.`:'No checksum or replica integrity issues detected.'}</div>${issueRows||`<div class="checksum-beam"><div class="beam-label">ALL LIVE REPLICAS</div><div class="beam-result">MATCH / VERIFIED</div></div>`}</section>`;
+}
+function rebalancingView(){let before=[82,78,41,35,62,28],after=[61,63,58,57,60,55];let bars=(set,afterMode)=>set.map((v,i)=>`<div class="bar-row"><span>Node-0${i+1}</span><div class="bar"><b class="${!afterMode&&v>75?'red':''}" style="width:${v}%"></b></div><b>${v}%</b></div>`).join('');return heading('Rebalancing','Redistribute chunks to reduce capacity skew and increase recovery headroom.',`<button class="btn btn-primary" id="startRebalance">Start Rebalancing</button>`)+`<article class="panel"><div class="section-title">Capacity redistribution / before → after</div><div class="section-sub">12,842 chunks scheduled through independent storage lanes.</div><div class="balance-chart"><div><div class="eyebrow">BEFORE / SKEW DETECTED</div>${bars(before,false)}</div><div><div class="eyebrow">AFTER / TARGET DISTRIBUTION</div>${bars(after,true)}</div></div></div><div class="checksum-beam"><div class="beam-label">CHUNK MOVEMENT: NODE-01 / NODE-02 → NODE-03 / NODE-04 / NODE-06</div><div class="beam-result">8.4 GB / IN FLIGHT</div></div></article>`}
+function networkView(){return heading('Network','Independent-node topology, latency monitoring, and fault-partition simulation.')+`<section class="dashboard-grid"><article class="panel"><div class="section-title">Connected network topology</div><div class="section-sub">Pulsing cyan paths carry replica traffic. Select a node to inspect its connectivity.</div>${nodeMap()}</article><aside class="panel">${selectedNodePanel()}</aside></section>`}
+function logsView(){const types=['All','Replication','Repair','Integrity','Node','Network','Rebalancing'],logs=state.events.filter(e=>state.logFilter==='All'||e.type===state.logFilter);return heading('Activity Logs','Searchable stream of distributed storage operations.',`<select class="btn" id="logFilter">${types.map(x=>`<option ${x===state.logFilter?'selected':''}>${x}</option>`).join('')}</select>`)+`<article class="panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>TIMESTAMP</th><th>EVENT</th><th>OBJECT</th><th>NODE</th><th>SEVERITY</th><th>ACTION</th></tr></thead><tbody>${logs.map(e=>`<tr><td class="mono">${e.time}</td><td><b>${e.event}</b></td><td class="mono">${e.object}</td><td>${e.node}</td><td>${badge(e.severity)}</td><td><button class="btn btn-sm" data-action="log-details" data-event="${e.event}">View Details</button></td></tr>`).join('')}</tbody></table></div></article>`}
+function settingsView(){return heading('Settings','Configure operational policies for this demonstration session.',`<button class="btn btn-primary" id="saveSettings">Save Settings</button>`)+`<article class="panel">${[['replication','Replication Factor',['1x','2x','3x','4x']],['chunk','Chunk Size',['1 MB','4 MB','8 MB','16 MB']]].map(x=>`<div class="setting-row"><div><b>${x[1]}</b><div class="small" style="margin-top:4px">Distributed placement policy for this demonstration.</div></div><div class="segmented" data-setting="${x[0]}">${x[2].map(v=>`<button class="btn ${state.settings[x[0]]===v?'selected':''}" data-value="${v}">${v}</button>`).join('')}</div></div>`).join('')}${[['integrity','Integrity Verification'],['repair','Self Repair'],['rebalancing','Background Rebalancing']].map(x=>`<div class="setting-row"><div><b>${x[1]}</b><div class="small" style="margin-top:4px">Enable continuous cluster automation.</div></div><button class="switch ${state.settings[x[0]]?'on':''}" data-toggle="${x[0]}" aria-pressed="${state.settings[x[0]]}"><i></i></button></div>`).join('')}</article>`}
+function render(){
+ nav();const views={Dashboard:dashboard,Objects:objectsView,'Object Detail':detailView,'Storage Nodes':nodesView,Replication:replicationView,'Self Repair':repairView,Integrity:integrityView,Rebalancing:rebalancingView,Network:networkView,'Activity Logs':logsView,Settings:settingsView};
+ appMain.innerHTML=views[state.route]();routeTitle.textContent=state.route;routeSub.textContent=state.route==='Dashboard'?'DISTRIBUTED CONTROL PLANE':'VAULT CONTROL PLANE';lucide.createIcons();
+}
+function toast(msg){toastText.textContent=msg;const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
+function confirmAction(title,text,cb){state.pendingAction=cb;modalTitle.textContent=title;modalText.textContent=text;modalLayer.classList.remove('hidden')}
+function nodeAction(action,id){const n=state.nodes.find(x=>x.id===id);if(action==='fail'){n.status='Failed';n.network='Offline';n.heartbeat='just now';addEvent('NODE FAILURE SIMULATED','—',id,'Warning','Node');toast(`${id} is offline. Replica recovery has been queued.`)}if(action==='recover'){n.status='Healthy';n.network='Connected';n.heartbeat='just now';n.cpu='35%';n.used='22.4 GB / 10 GB';n.pct=44.8;addEvent('NODE RECOVERED','—',id,'Success','Node');toast(`${id} recovered and rejoined the cluster.`)}if(action==='partition'){n.partition=true;n.network='Partitioned';addEvent('NETWORK PARTITION DETECTED','—',id,'Warning','Network');toast(`${id} is isolated; consistency safeguards are active.`)}if(action==='heal'){n.partition=false;n.network='Connected';addEvent('NETWORK PARTITION HEALED','—',id,'Success','Network');toast(`${id} partition has been healed.`)}render()}
+document.addEventListener('click',e=>{
+ const r=e.target.closest('[data-route]');if(r){state.route=r.dataset.route;sidebar.classList.remove('open');render();return}
+ const a=e.target.closest('[data-action]');if(!a)return;const action=a.dataset.action,id=a.dataset.node,obj=a.dataset.object;
+ if(['fail','partition'].includes(action)){confirmAction(action==='fail'?'Fail storage node?':'Create network partition?',`${id} will enter a simulated ${action==='fail'?'failure':'partition'} state.`,()=>nodeAction(action,id));return}
+ if(['recover','heal'].includes(action)){nodeAction(action,id);return}
+ if(action==='select-node'){state.selectedNode=id;render();return}
+ if(action==='node-details'){state.selectedNode=id;state.route='Network';render();return}
+ if(action==='metadata'){state.route='Object Detail';render();return}
+ if(action==='download'){addEvent('MULTI-NODE RETRIEVAL REQUESTED',obj,'Node-01','Info','Node');toast('Download prepared from healthy replicas.');return}
+ if(action==='verify-object'){toast('SHA-256 verification started for selected object.');setTimeout(()=>{addEvent('OBJECT INTEGRITY VERIFIED',obj,'Cluster','Success','Integrity');toast('Integrity verification completed.');render()},900);return}
+ if(action==='repair-object'){const o=state.objects.find(x=>x.id===obj);if(o)o.status='Healthy';addEvent('OBJECT REPAIR COMPLETED',obj,'Node-05','Success','Repair');toast('Healthy replica copied and destination verification completed.');render();return}
+ if(action==='reconcile'){toast('Reconciling replica queue...');setTimeout(()=>{addEvent('REPLICATION QUEUE RECONCILED','—','Cluster','Success','Replication');toast('Replication queue reconciled.');render()},900);return}
+ if(action==='pause-repair'){toast('Self-repair paused for this demonstration session.');return}
+ if(action==='log-details'){toast(`Event detail: ${a.dataset.event}`)}
+});
+modalClose.onclick=modalCancel.onclick=()=>modalLayer.classList.add('hidden');
+modalConfirm.onclick=()=>{const cb=state.pendingAction;modalLayer.classList.add('hidden');state.pendingAction=null;if(cb)cb()};
+menuToggle.onclick=()=>sidebar.classList.toggle('open');
+document.addEventListener('input',e=>{if(e.target.id==='objectSearch'){state.objectFilter=e.target.value;render()}});
+document.addEventListener('change',e=>{if(e.target.id==='logFilter'){state.logFilter=e.target.value;render()}/* filePicker is handled by the backend bridge below */});
+document.addEventListener('click',e=>{
+ if(e.target.id==='verifyAll'){e.target.disabled=true;e.target.textContent='Verifying 1,248 objects...';setTimeout(()=>{addEvent('GLOBAL INTEGRITY VERIFICATION COMPLETE','—','Cluster','Success','Integrity');toast('All objects verified. Three repair cases remain queued.');render()},1200)}
+ if(e.target.id==='startRebalance'){e.target.disabled=true;e.target.textContent='Rebalancing in progress...';setTimeout(()=>{addEvent('REBALANCING CYCLE COMPLETED','—','Cluster','Success','Rebalancing');toast('Rebalancing completed: 8.4 GB redistributed.');render()},1200)}
+ if(e.target.id==='saveSettings'){addEvent('CLUSTER SETTINGS SAVED','—','Cluster','Success','Node');toast('Settings saved for this session.')}
+ const seg=e.target.closest('[data-setting] button');if(seg){state.settings[seg.parentElement.dataset.setting]=seg.dataset.value;render()}
+ const tog=e.target.closest('[data-toggle]');if(tog){state.settings[tog.dataset.toggle]=!state.settings[tog.dataset.toggle];render()}
+});
+notificationButton.onclick=()=>toast('3 operational notifications: 1 node offline, 2 under-replicated objects.');
+globalSearch.addEventListener('keydown',e=>{if(e.key==='Enter'){state.route='Objects';state.objectFilter=e.target.value;render()}});
+render();
+</script>
+ 
+
+<script>
+/* VAULT BACKEND BRIDGE
+   Connects this Canva-exported interface to the local Vault REST API. */
+const VAULT_API = '';
+
+function escapeHtml(value){return String(value??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));}
+function humanBytes(n){
+  n=Number(n)||0;
+  const units=['B','KB','MB','GB','TB']; let i=0;
+  while(n>=1024 && i<units.length-1){n/=1024;i++;}
+  return `${n.toFixed(i?1:0)} ${units[i]}`;
+}
+async function api(path, options={}){
+  const res=await fetch(VAULT_API+path, options);
+  const ct=res.headers.get('content-type')||'';
+  const body=ct.includes('application/json') ? await res.json() : await res.text();
+  if(!res.ok) throw new Error(body?.error || body || `HTTP ${res.status}`);
+  return body;
+}
+function nodeFromApi(n){
+  const failed=!n.online, partitioned=!!n.partitioned;
+  return {
+    id:n.id.replace(/^node-/,'Node-'), apiId:n.id,
+    status:failed?'Failed':partitioned?'Partitioned':'Healthy',
+    cpu:'—', used:humanBytes(n.usedBytes)+' / '+humanBytes(n.capacityBytes),
+    pct:Number(n.utilization||0), objects:'—', load:'—',
+    network:failed?'Offline':partitioned?'Partitioned':'Connected',
+    heartbeat:n.lastHeartbeat?new Date(n.lastHeartbeat).toLocaleTimeString():'—',
+    latency:'—', partition:partitioned, role:'distributed storage node'
+  };
+}
+function objectFromApi(o){
+  const replicas=[...new Set((o.chunks||[]).flatMap(c=>c.replicas||[]))];
+  return {
+    name:o.originalName||o.objectId, id:o.objectId, size:humanBytes(o.size),
+    chunks:String(o.chunkCount||o.chunks?.length||0),
+    replication:(o.replicationFactor||3)+'x',
+    checksum:(o.objectChecksum||'').slice(0,12)+'...',
+    checksumFull:o.objectChecksum, status:'Healthy',
+    created:o.createdAt?new Date(o.createdAt).toLocaleString():'—',
+    nodes:replicas.map(x=>x.replace(/^node-/,'Node-'))
+  };
+}
+async function refreshVault({rerender=true}={}){
+  try{
+    const [health, stats, nodes, objects, integrity] = await Promise.all([
+      api('/api/health'), api('/api/stats'), api('/api/nodes'), api('/api/objects'), api('/api/integrity/summary')
+    ]);
+    state.backend={health,stats};
+    state.integrity=integrity;
+    state.nodes=(nodes.nodes||[]).map(nodeFromApi);
+    state.objects=(objects.objects||[]).map(objectFromApi);
+    state.settings.replication=Number(stats.replicationFactor||3)+'x';
+    state.backendFaultTolerance=stats.nodeCount ? Math.round(stats.healthyNodes/stats.nodeCount*100) : 0;
+    if(!state.selectedNode || !state.nodes.some(n=>n.id===state.selectedNode))
+      state.selectedNode=state.nodes[0]?.id||'Node-01';
+    if(rerender) render();
+  }catch(e){
+    console.error('Vault backend refresh:',e);
+    toast('Backend connection error: '+e.message);
+  }
+}
+async function backendNodeAction(action,id){
+  const apiId=id.toLowerCase().replace('node-','node-');
+  const map={
+    fail:`/api/nodes/${apiId}/fail`, recover:`/api/nodes/${apiId}/recover`,
+    partition:`/api/nodes/${apiId}/partition`, heal:`/api/nodes/${apiId}/heal-partition`
+  };
+  try{
+    await api(map[action],{method:'POST'});
+    addEvent(action==='fail'?'NODE FAILURE':action==='recover'?'NODE RECOVERED':
+      action==='partition'?'NETWORK PARTITION DETECTED':'NETWORK PARTITION HEALED',
+      '—',id,(action==='fail'||action==='partition')?'Warning':'Success',
+      (action==='partition'||action==='heal')?'Network':'Node');
+    await refreshVault();
+    toast(`${id}: ${action} completed on backend.`);
+  }catch(e){toast('Action failed: '+e.message)}
+}
+async function backendUpload(file){
+  if(!file) return;
+  if(file.size===0){ toast('The selected file is empty. Choose a non-empty file.'); return; }
+
+  const zone=document.getElementById('dropZone');
+  if(zone){
+    zone.innerHTML=`<div class="upload-state">
+      <i data-lucide="upload-cloud" style="color:var(--cyan);width:34px;height:34px"></i>
+      <div style="font-weight:700;margin-top:8px">Uploading ${escapeHtml(file.name)}</div>
+      <div class="small" style="margin-top:7px">Sending ${humanBytes(file.size)} to Vault…</div>
+      <div class="bar" style="width:min(420px,80vw);margin:14px auto 0"><b id="uploadProgress" style="width:0%"></b></div>
+      <div class="small" id="uploadStatus" style="margin-top:8px">Starting upload…</div>
+      <button class="btn btn-sm" id="cancelUpload" type="button" style="margin-top:12px">Cancel</button>
+    </div>`;
+    try{lucide.createIcons()}catch(_){ }
+  }
+
+  const rf=Math.max(1,parseInt(String(state.settings.replication).replace('x',''),10)||3);
+  const fd=new FormData();
+  fd.append('file',file,file.name);
+  fd.append('replicationFactor',String(rf));
+
+  const xhr=new XMLHttpRequest();
+  xhr.open('POST',`${VAULT_API}/api/objects`,true);
+  xhr.responseType='json';
+  xhr.timeout=15*60*1000;
+
+  let cancelled=false;
+  const cancel=document.getElementById('cancelUpload');
+  if(cancel) cancel.onclick=()=>{cancelled=true;xhr.abort();};
+
+  xhr.upload.onprogress=(e)=>{
+    if(!e.lengthComputable) return;
+    const pct=Math.round((e.loaded/e.total)*100);
+    const bar=document.getElementById('uploadProgress');
+    const status=document.getElementById('uploadStatus');
+    if(bar) bar.style.width=pct+'%';
+    if(status) status.textContent=`Uploading… ${pct}%`;
+  };
+
+  xhr.onerror=()=>{
+    if(cancelled) return;
+    toast('Upload failed: the Vault server could not be reached. Make sure npm start is running.');
+    refreshVault();
+  };
+  xhr.ontimeout=()=>toast('Upload timed out. Check the server and try again.');
+  xhr.onabort=()=>{ if(!cancelled) toast('Upload was interrupted.'); };
+
+  xhr.onload=async()=>{
+    let data=xhr.response;
+    if(!data){try{data=JSON.parse(xhr.responseText||'{}')}catch(_){data={}}}
+    if(xhr.status>=200 && xhr.status<300){
+      addEvent('OBJECT UPLOAD COMPLETED',data.object?.objectId||file.name,'Cluster','Success','Node');
+      toast(`${file.name} uploaded successfully.`);
+      await refreshVault();
+    }else{
+      const message=data?.error || `Upload failed (HTTP ${xhr.status})`;
+      toast(message);
+      await refreshVault();
+    }
+  };
+  xhr.send(fd);
+}
+
+async function downloadBackend(objectId){
+  try{
+    const res=await fetch(`${VAULT_API}/api/objects/${encodeURIComponent(objectId)}`);
+    if(!res.ok){const d=await res.json().catch(()=>({}));throw new Error(d.error||`HTTP ${res.status}`)}
+    const blob=await res.blob(), url=URL.createObjectURL(blob);
+    const a=document.createElement('a'); a.href=url;
+    a.download=state.objects.find(x=>x.id===objectId)?.name||objectId;
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    addEvent('MULTI-NODE OBJECT RETRIEVAL',objectId,'Cluster','Success','Node');
+    toast('Object reconstructed from healthy replicas.');
+  }catch(e){toast('Download failed: '+e.message)}
+}
+async function verifyObjectBackend(objectId){
+  try{
+    const r=await api(`/api/objects/${encodeURIComponent(objectId)}/verify`);
+    addEvent(r.healthy?'OBJECT INTEGRITY VERIFIED':'INTEGRITY ISSUE DETECTED',objectId,'Cluster',r.healthy?'Success':'Warning','Integrity');
+    toast(r.healthy?'SHA-256 verification passed.':'Integrity issue detected; repair queued.');
+    await refreshVault();
+  }catch(e){toast('Verification failed: '+e.message)}
+}
+async function repairBackend(objectId){
+  try{
+    const r=await api('/api/repair',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(objectId?{objectId}:{})});
+    addEvent('REPAIR PASS COMPLETED',objectId||'Cluster','Cluster','Success','Repair');
+    toast(`Repair completed: ${r.repaired||0} chunk(s) repaired.`);
+    await refreshVault();
+  }catch(e){toast('Repair failed: '+e.message)}
+}
+async function verifyAllBackend(){
+  try{
+    const r=await api('/api/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+    addEvent('GLOBAL INTEGRITY VERIFICATION','—','Cluster',r.unhealthy?'Warning':'Success','Integrity');
+    toast(`Verified ${r.checked} object(s): ${r.healthy} healthy, ${r.unhealthy} unhealthy.`);
+    await refreshVault();
+  }catch(e){toast('Verification failed: '+e.message)}
+}
+async function rebalanceBackend(){
+  try{
+    const r=await api('/api/rebalance',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+    addEvent('REBALANCING PASS COMPLETED','—','Cluster','Success','Rebalancing');
+    toast(`Rebalancing pass complete: ${r.repaired||0} placement(s) repaired.`);
+    await refreshVault();
+  }catch(e){toast('Rebalancing failed: '+e.message)}
+}
+async function metadataBackend(objectId){
+  try{
+    state.selectedObject=await api(`/api/objects/${encodeURIComponent(objectId)}/metadata`);
+    state.route='Object Detail'; render();
+  }catch(e){toast('Metadata failed: '+e.message)}
+}
+async function deleteBackend(objectId){
+  try{
+    await api(`/api/objects/${encodeURIComponent(objectId)}`,{method:'DELETE'});
+    addEvent('OBJECT DELETED',objectId,'Cluster','Success','Node');
+    toast('Object deleted from all replicas.');
+    await refreshVault();
+  }catch(e){toast('Delete failed: '+e.message)}
+}
+function detailView(){
+  const o=state.selectedObject;
+  if(!o) return heading('Object Metadata','Select an object from the registry.',`<button class="btn" data-route="Objects">← Back to Objects</button>`);
+  const rows=(o.chunks||[]).slice(0,100).map(c=>{
+    const reps=(c.replicas||[]).map(x=>x.replace(/^node-/,'Node-'));
+    return `<tr><td class="mono">Chunk ${String(c.index).padStart(4,'0')}</td><td class="mono">${(c.checksum||'').slice(0,16)}...</td><td>${reps[0]||'—'}</td><td>${reps[1]||'—'}</td><td>${reps[2]||'—'}</td><td>${badge(reps.length>=Number(o.replicationFactor||3)?'Healthy':'Repair')}</td></tr>`;
+  }).join('');
+  const replicas=[...new Set((o.chunks||[]).flatMap(c=>c.replicas||[]))];
+  return heading(o.originalName||o.objectId,'Live metadata from the Vault backend.',`<button class="btn" data-route="Objects">← Back to Objects</button>`)
+  +`<section class="dashboard-grid"><article class="panel"><div style="display:flex;justify-content:space-between"><div><div class="section-title">${o.originalName||o.objectId}</div><div class="small mono" style="margin-top:4px">${o.objectId} · SHA-256 ${o.objectChecksum}</div></div>${badge('Healthy')}</div>
+  <div class="map-grid"><div class="map-lane"><div class="eyebrow">CHUNKS</div>${(o.chunks||[]).slice(0,12).map(c=>`<div class="chunk-block">CHUNK ${String(c.index).padStart(4,'0')}<div style="color:#75ccea;margin-top:3px">${humanBytes(c.size)} · VERIFIED</div></div>`).join('')}${o.chunkCount>12?`<div class="small">+ ${o.chunkCount-12} more chunks</div>`:''}</div>
+  <div class="map-lane"><div class="eyebrow">REPLICA PATHS</div>${(o.chunks||[]).slice(0,8).map((c,i)=>`<div class="replica-route"><span class="route-dot" style="animation-delay:${i*.24}s"></span>${(c.replicas||[]).map((r,j)=>`<span class="replica-badge">R${j+1} ${r.replace(/^node-/,'Node-')}</span>`).join('')}</div>`).join('')}</div>
+  <div class="map-lane"><div class="eyebrow">STORAGE NODES</div>${replicas.map(x=>`<div class="chunk-block" style="border-color:#775fdd;background:#191b3d">${x.replace(/^node-/,'Node-')}<div style="color:#c5bbff;margin-top:3px">REPLICA AVAILABLE</div></div>`).join('')}</div></div></article>
+  <aside class="panel"><div class="section-title">Storage distribution</div><div class="iso-wrap"><div class="iso-stack"><div class="iso-layer"></div><div class="iso-layer"></div><div class="iso-layer"></div></div></div><div class="node-detail"><div class="detail-line"><span>Object size</span><b>${humanBytes(o.size)}</b></div><div class="detail-line"><span>Chunk count</span><b>${o.chunkCount}</b></div><div class="detail-line"><span>Expected replicas</span><b>${o.replicationFactor}</b></div><div class="detail-line"><span>Version</span><b>${o.version}</b></div><div class="detail-line"><span>Retrieval</span>${badge('Consistent')}</div></div></aside></section>
+  <article class="panel" style="margin-top:16px"><div class="section-title">Chunk distribution</div><div class="table-wrap"><table class="data-table"><thead><tr><th>CHUNK</th><th>CHECKSUM</th><th>REPLICA 1</th><th>REPLICA 2</th><th>REPLICA 3</th><th>STATUS</th></tr></thead><tbody>${rows}</tbody></table></div></article>`;
+}
+function dashboard(){
+  const s=state.backend?.stats||{};
+  const health=state.backendFaultTolerance??0;
+  const used=s.usedBytes||0, total=s.totalCapacityBytes||1;
+  const storagePct=Math.round(used/total*100);
+  const healthy=s.healthyNodes??state.nodes.filter(n=>n.status==='Healthy').length;
+  const totalNodes=s.nodeCount??state.nodes.length;
+  const rf=s.replicationFactor??3;
+  return heading('Vault Distributed Storage','Fault-tolerant object storage visualized as a live distributed system.')
+  +`<section class="dashboard-grid"><article class="panel">
+  <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><div><div class="section-title">Object lifecycle / live placement fabric</div><div class="section-sub">One object becomes independently recoverable placement units across the cluster.</div></div>${badge('LIVE SIGNAL')}</div>
+  <div class="flow-canvas"><div class="flow-steps">${['DATA','CHUNKS','REPLICAS','STORAGE NODES','SELF-REPAIR'].map(x=>`<div class="flow-label">${x}</div>`).join('')}</div>
+  <svg class="flow-svg" viewBox="0 0 900 350" preserveAspectRatio="none"><path class="trace" d="M105 165 C210 165 215 135 300 135 M105 165 C205 165 220 210 300 210"/><path class="trace trace-violet" d="M347 135 C00 90 460 90 515 100 M347 135 C00 155 460 155 515 160 M347 210 C00 220 460 220 515 220"/><path class="trace" d="M555 100 C650 80 685 60 770 70 M555 160 C650 135 685 150 770 145 M555 220 C650 250 680 245 770 245"/><path class="trace trace-repair" d="M790 205 C850 245 842 292 770 296"/><circle class="particle" cx="190" cy="165" r="4"/><circle class="particle" cx="453" cy="145" r="4"/><circle class="particle" cx="680" cy="10" r="4"/></svg>
+  <div class="flow-stage stage-data"><i data-lucide="package-open"></i><span class="mono" style="display:block;margin-top:5px">VAULT OBJECT</span></div>
+  <div class="stage-chunks">${[1,2,3,4].map(x=>`<div class="chunk"></div>`).join('')}</div>
+  <div class="stage-replicas">${['A','B','C','D','E','F'].map(x=>`<div class="replica">${x}</div>`).join('')}</div>
+  <div class="storage-cluster">${state.nodes.map(n=>`<div class="storage-node" style="${n.status==='Failed'?'border-color:#ff607a;color:#ffabb8':''}">${n.id.replace('Node-','N')}</div>`).join('')}</div>
+  <div class="repair-core"><div class="repair-ring"><i data-lucide="wrench" style="width:18px"></i></div>VERIFY · COPY · HEAL</div></div>
+  <div class="mini-readouts"><div class="readout"><div class="eyebrow">OBJECTS</div><strong>${s.objectCount??state.objects.length}</strong><div class="small">live backend count</div></div><div class="readout"><div class="eyebrow">REPLICATION</div><strong>${rf}x</strong><div class="small">durability policy</div></div><div class="readout"><div class="eyebrow">STORAGE USED</div><strong>${humanBytes(used)}</strong><div class="small">${storagePct}% of cluster capacity</div></div></div>
+  </article>
+  <aside class="panel"><div class="section-title">Cluster health aperture</div><div class="section-sub">Live values from the Vault backend.</div>
+  <div class="health-dial"><svg viewBox="0 0 160 160"><circle class="dial-bg" cx="80" cy="80" r="68"></circle><circle class="dial-main" cx="80" cy="80" r="68" style="stroke-dashoffset:${426-(426*health/100)}"></circle><circle class="dial-red" cx="80" cy="80" r="68"></circle></svg><div class="dial-copy"><strong>${health}%</strong><span>FAULT TOLERANT</span></div></div>
+  <div class="node-detail"><div class="detail-line"><span>Metadata quorum</span>${badge('Consistent')}</div><div class="detail-line"><span>SHA-256 engine</span><b>ACTIVE</b></div><div class="detail-line"><span>Healthy nodes</span><b>${healthy} / ${totalNodes}</b></div><div class="detail-line"><span>Cluster free</span><b>${humanBytes(s.freeBytes||0)}</b></div></div>
+  <button class="btn btn-primary" data-route="Network" style="width:100%;margin-top:16px">Inspect cluster topology</button></aside></section>
+  <section class="dashboard-lower"><article class="panel"><div class="section-title">Six-node storage constellation</div><div class="section-sub">Capacity, health and independent node placement from the live backend.</div>${nodeMap()}</article>
+  <article class="panel"><div class="section-title">Operational trace</div><div class="section-sub">Recent UI events</div><div class="event-list">${state.events.slice(0,5).map(e=>`<div class="event-row"><span class="event-pin"></span><div><b>${e.event}</b><div class="small" style="margin-top:3px">${e.object} · ${e.node}</div></div><span class="mono" style="color:#87a8c4">${e.time}</span></div>`).join('')}</div></article></section>`;
+}
+
+/* Capture backend actions before the original Canva demo handlers. */
+document.addEventListener('click', async e=>{
+  const a=e.target.closest('[data-action]');
+  if(a){
+    const action=a.dataset.action, id=a.dataset.node, obj=a.dataset.object;
+    if(['fail','recover','partition','heal'].includes(action)){
+      e.preventDefault();e.stopImmediatePropagation();
+      if(action==='fail'||action==='partition'){
+        confirmAction(action==='fail'?'Fail storage node?':'Create network partition?',`${id} will enter a simulated ${action==='fail'?'failure':'partition'} state.`,()=>backendNodeAction(action,id));
+      }else await backendNodeAction(action,id);
+      return;
+    }
+    if(action==='download'){e.preventDefault();e.stopImmediatePropagation();await downloadBackend(obj);return}
+    if(action==='metadata'){e.preventDefault();e.stopImmediatePropagation();await metadataBackend(obj);return}
+    if(action==='verify-object'){e.preventDefault();e.stopImmediatePropagation();await verifyObjectBackend(obj);return}
+    if(action==='repair-object'){e.preventDefault();e.stopImmediatePropagation();await repairBackend(obj);return}
+    if(action==='reconcile'){e.preventDefault();e.stopImmediatePropagation();await rebalanceBackend();return}
+  }
+  if(e.target.id==='verifyAll'){e.preventDefault();e.stopImmediatePropagation();await verifyAllBackend();return}
+  if(e.target.id==='startRebalance'){e.preventDefault();e.stopImmediatePropagation();await rebalanceBackend();return}
+  if(e.target.id==='delete-object'){e.preventDefault();e.stopImmediatePropagation();await deleteBackend(e.target.dataset.object);return}
+},true);
+
+/* Do not intercept the file input change event here. The upload handler below
+   must receive the native file selection event. */
+nodeAction=backendNodeAction;
+simulateUpload=backendUpload;
+
+/* Robust upload integration. The visible label opens the native picker;
+   drag-and-drop is handled here and both paths use the real backend. */
+document.addEventListener('keydown',e=>{
+  const zone=e.target.closest('#dropZone');
+  if(zone && (e.key==='Enter' || e.key===' ')){ e.preventDefault(); document.getElementById('filePicker')?.click(); }
+}, true);
+
+document.addEventListener('click',e=>{
+  const zone=e.target.closest('#dropZone');
+  if(zone && e.target.id!=='filePicker'){
+    zone.classList.remove('drag');
+  }
+}, true);
+
+document.addEventListener('change',e=>{
+  if(e.target.id!=='filePicker') return;
+  const file=e.target.files && e.target.files[0];
+  if(file) backendUpload(file);
+  e.target.value='';
+}, true);
+
+document.addEventListener('dragover',e=>{
+  const zone=e.target.closest('#dropZone');
+  if(!zone)return;
+  e.preventDefault();
+  e.stopPropagation();
+  zone.classList.add('drag');
+}, true);
+
+document.addEventListener('drop',e=>{
+  const zone=e.target.closest('#dropZone');
+  if(!zone)return;
+  e.preventDefault();
+  e.stopPropagation();
+  zone.classList.remove('drag');
+  const file=e.dataTransfer?.files?.[0];
+  if(file) backendUpload(file);
+}, true);
+
+(async()=>{
+  await refreshVault({rerender:false});
+  render();
+  setInterval(()=>refreshVault({rerender:true}),8000);
+})();
+</script>
+
+</body></html>

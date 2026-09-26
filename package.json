@@ -1,0 +1,15 @@
+{
+  "name": "vault-distributed-object-storage",
+  "version": "2.1.0",
+  "description": "Hackathon prototype: fault-tolerant distributed object storage with chunking, replication, repair, partitions and rebalancing",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
